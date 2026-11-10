@@ -1,0 +1,64 @@
+
+name: Prepare Indodax Market Data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test strategy
+        run: npm test
+
+      - name: Download historical data
+        run: npm run data:download
+
+      - name: Verify universe
+        run: npm run universe:check
+
+      - name: Collect market snapshots
+        run: npm run preflight
+
+      - name: Run backtest
+        run: npm run backtest
+
+      - name: Build dashboard
+        run: npm run dashboard:build
+
+      - name: Commit verified universe
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/universe.json public/dashboard-offline.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Record verified market universe"
+            git push origin main
+          fi
+
+      - name: Save research data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indodax-market-preparation
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            config/universe.json
+            data/history_4h/*.csv
+            data/snapshots.jsonl
+            results/backtest.json
+            public/dashboard-offline.html
+            
