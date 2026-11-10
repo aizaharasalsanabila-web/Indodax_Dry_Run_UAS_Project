@@ -1,0 +1,68 @@
+{
+  "project": "Indodax Crypto Dry Run UAS",
+  "strategyName": "UTS-A Adaptasi Crypto: Donchian Breakout + Trend Filter",
+  "strategyVersion": "1.0.0-late-freeze",
+  "timeframeMinutes": 240,
+  "timeframeLabel": "4h",
+  "maxSignalHistoryBars": 650,
+  "backtestStartUtc": "2023-11-10T00:00:00Z",
+  "initialCapitalIDR": 100000000,
+  "universeCandidates": [
+    "BTCIDR",
+    "ETHIDR",
+    "XRPIDR",
+    "LTCIDR"
+  ],
+  "universeSelection": {
+    "method": "Fixed ex-ante candidate list; verify liquidity on the first 30 calendar days of the backtest, not on current turnover",
+    "firstWindowDays": 30,
+    "minimumMedianTurnoverPer4hIDR": 50000000,
+    "survivorshipBiasDisclosure": "The supplied market archive contains currently available pairs and does not include a complete historical delisted-pair universe. Selection by initial-period liquidity reduces current-volume selection but does not eliminate survivorship bias."
+  },
+  "entry": {
+    "breakoutLookbackBars": 60,
+    "breakoutBufferPct": 0.25,
+    "emaFast": 20,
+    "emaSlow": 60,
+    "emaSlopeLookbackBars": 12,
+    "rocLookbackBars": 42,
+    "medianTurnoverLookbackBars": 60,
+    "minimumMedianTurnoverIDR": 50000000,
+    "cooldownBarsAfterExit": 6
+  },
+  "exit": {
+    "atrPeriod": 14,
+    "stopAtrMultiple": 3,
+    "emaExitPeriod": 30,
+    "consecutiveClosesBelowEma": 2
+  },
+  "risk": {
+    "maxOpenPositions": 3,
+    "riskPerTradePct": 0.01,
+    "maxPositionPctEquity": 0.2,
+    "maxGrossExposurePctEquity": 0.6,
+    "dailyLossLimitPct": 0.03,
+    "dailyTimezone": "Asia/Jakarta"
+  },
+  "execution": {
+    "mode": "DRY_RUN_ONLY",
+    "maxSpreadPct": 2,
+    "minimumOrderIDR": 25000,
+    "snapshotReferenceNotionalIDR": 1000000,
+    "requireFullDepthForFill": true,
+    "noMidOrCloseFills": true,
+    "buyTakerFeeAllInPctOfficial": 0.20555,
+    "sellTakerFeeAllInPctOfficial": 0.41555,
+    "feeSourceUrl": "https://help.indodax.com/hc/en-us/articles/4416646599705-Details-of-Transaction-Fees-on-INDODAX",
+    "feeEffectiveDate": "2026-10-01",
+    "minimumOrderRule": "max(Rp25.000, API trade_min_base_currency)",
+    "snapshotCostModel": "Backtest must use median spread and simulated sweep slippage from raw order-book snapshots. If no snapshots exist, the measured-cost backtest must stop; estimated-cost mode is explicitly provisional."
+  },
+  "forwardTest": {
+    "scheduledStartUtc": "2026-11-04T05:00:00Z",
+    "scheduledEndUtc": "2026-11-14T05:00:00Z",
+    "requiredHours": 240,
+    "status": "MISSED_START_PENDING_REAL_DEPLOYMENT",
+    "lateStartPolicy": "Never fabricate historical runs. Actual start is the timestamp of the first successful deployed tick. Disclose the shortened period."
+  }
+}

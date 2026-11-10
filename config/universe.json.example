@@ -1,0 +1,6 @@
+{
+  "status": "PENDING",
+  "verifiedAt": null,
+  "symbols": [],
+  "note": "Run npm run data:download and npm run universe:check. This example must not be used for live execution."
+}

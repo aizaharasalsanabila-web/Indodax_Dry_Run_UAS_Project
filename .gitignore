@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.vercel/
+.DS_Store
+npm-debug.log*
+data/history_4h/*.csv
+data/snapshots.jsonl
+data/forward_logs.json
+results/*.json
+!results/.gitkeep

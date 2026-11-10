@@ -1,0 +1,14 @@
+{
+  "source_sha256": "54da95d225896334ab815c08a94ebde42839e4f58eb5b6965043fb3b8cb5d137",
+  "valid_weekday_rows": 487049,
+  "raw_rows": 487082,
+  "invalid_ohlcv_rows": 32,
+  "weekend_rows_excluded": 1,
+  "duplicates": 0,
+  "names": 100,
+  "first": "1994-07-12",
+  "last": "2026-07-27",
+  "dashboard_data_through_2026_07_24_exact_match": true,
+  "comparable_rows": 486949,
+  "research_end": "2025-12-31"
+}

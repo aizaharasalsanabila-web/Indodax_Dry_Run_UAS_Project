@@ -1,0 +1,27 @@
+{
+  "freeze": "2026-10-18",
+  "hash": "7628b0c79d68035284baf384ff4421711f38677de9f3b9ee2e17083a35d9c3b4",
+  "config": {
+    "start": "2016-01-01",
+    "end": "2025-12-31",
+    "capital": 1000000000,
+    "risk": 0.015,
+    "totalrisk": 0.09,
+    "maxweight": 0.15,
+    "gross": 0.9,
+    "stopatr": 4,
+    "cost": 1,
+    "guard": true,
+    "modules": "AB",
+    "watchN": 100,
+    "bTop": 16,
+    "exitPeriod": 100,
+    "breakPeriod": 100,
+    "momentumMonths": 12,
+    "brake": false,
+    "delay": 0,
+    "exclude": []
+  },
+  "runs": 42,
+  "provenance": "Identitas bukan klaim strategi independen."
+}
