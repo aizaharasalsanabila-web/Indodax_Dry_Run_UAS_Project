@@ -1,0 +1,48 @@
+
+name: Indodax Forward Test (DRY RUN)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 0,4,8,12,16,20 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indodax-forward-test
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Call Vercel dry-run tick
+        env:
+          BOT_URL: ${{ secrets.BOT_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "$BOT_URL" ]; then
+            echo "Missing BOT_URL"
+            exit 1
+          fi
+
+          if [ -z "$CRON_SECRET" ]; then
+            echo "Missing CRON_SECRET"
+            exit 1
+          fi
+
+          BASE_URL="${BOT_URL%/}"
+
+          curl --silent --show-error --fail-with-body \
+            --max-time 55 \
+            --request POST \
+            --header "Authorization: Bearer ${CRON_SECRET}" \
+            --header "Content-Type: application/json" \
+            --data '{"source":"github-actions-forward-test"}' \
+            "${BASE_URL}/api/tick"
+            
