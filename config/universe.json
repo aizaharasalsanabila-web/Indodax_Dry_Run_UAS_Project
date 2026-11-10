@@ -1,6 +1,6 @@
 {
   "status": "VERIFIED",
-  "verifiedAt": "2026-11-10T09:17:11.412Z",
+  "verifiedAt": "2026-11-10T09:47:36.994Z",
   "method": "Fixed ex-ante candidate list; verify liquidity on the first 30 calendar days of the backtest, not on current turnover",
   "initialWindowStartUtc": "2023-11-10T00:00:00.000Z",
   "initialWindowEndUtc": "2023-12-10T00:00:00.000Z",
