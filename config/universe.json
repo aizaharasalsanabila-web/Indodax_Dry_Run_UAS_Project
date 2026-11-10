@@ -1,0 +1,41 @@
+{
+  "status": "VERIFIED",
+  "verifiedAt": "2026-11-10T09:17:11.412Z",
+  "method": "Fixed ex-ante candidate list; verify liquidity on the first 30 calendar days of the backtest, not on current turnover",
+  "initialWindowStartUtc": "2023-11-10T00:00:00.000Z",
+  "initialWindowEndUtc": "2023-12-10T00:00:00.000Z",
+  "minimumMedianTurnoverPer4hIDR": 50000000,
+  "symbols": [
+    "BTCIDR",
+    "ETHIDR",
+    "XRPIDR",
+    "LTCIDR"
+  ],
+  "measurements": [
+    {
+      "symbol": "BTCIDR",
+      "bars": 179,
+      "medianTurnoverPer4hIDR": 3568989590.27276,
+      "pass": true
+    },
+    {
+      "symbol": "ETHIDR",
+      "bars": 179,
+      "medianTurnoverPer4hIDR": 1131108581.69505,
+      "pass": true
+    },
+    {
+      "symbol": "XRPIDR",
+      "bars": 179,
+      "medianTurnoverPer4hIDR": 870987999.406833,
+      "pass": true
+    },
+    {
+      "symbol": "LTCIDR",
+      "bars": 179,
+      "medianTurnoverPer4hIDR": 78134952.57814,
+      "pass": true
+    }
+  ],
+  "survivorshipBias": "The supplied market archive contains currently available pairs and does not include a complete historical delisted-pair universe. Selection by initial-period liquidity reduces current-volume selection but does not eliminate survivorship bias."
+}
