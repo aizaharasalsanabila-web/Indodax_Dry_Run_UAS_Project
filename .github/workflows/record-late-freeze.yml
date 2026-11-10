@@ -1,64 +1,16 @@
-
-name: Record Indodax Late Freeze
-
-on:
-  workflow_dispatch:
-
-permissions:
-  contents: write
-  actions: read
-
-jobs:
-  freeze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Find successful preparation
-        id: prep
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          id=$(gh run list \
-            --repo "$GITHUB_REPOSITORY" \
-            --workflow prepare-market-data.yml \
-            --branch main \
-            --status success \
-            --limit 1 \
-            --json databaseId \
-            --jq '.[0].databaseId')
-          test -n "$id" && test "$id" != "null"
-          echo "run_id=$id" >> "$GITHUB_OUTPUT"
-
       - name: Download preparation artifact
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ steps.prep.outputs.run_id }}
         run: |
+          set -euo pipefail
+          mkdir -p preparation-artifact
           gh run download "$RUN_ID" \
             --repo "$GITHUB_REPOSITORY" \
             --name indodax-market-preparation \
-            --dir .
-
-      - name: Test strategy
-        run: npm test
-
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Record actual freeze
-        run: npm run freeze:record
-
-      - name: Push freeze commit
-        run: git push origin HEAD:main --follow-tags
-        
+            --dir preparation-artifact
+          test -f preparation-artifact/config/universe.json
+          test -f preparation-artifact/data/snapshots.jsonl
+          test -f preparation-artifact/results/backtest.json
+          cp -a preparation-artifact/. .
+          rm -rf preparation-artifact
