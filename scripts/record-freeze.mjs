@@ -60,7 +60,7 @@ const record = {
   signalEngineSha256: sha(path.join(ROOT,'lib/strategy.js')),
   executionEngineSha256: sha(path.join(ROOT,'lib/execution.js')),
   snapshotDataSha256: sha(snapshotsFile),
-  historyDataSha256,
+  historyDataSha256: historyDataHashes,
   universe: universe.symbols,
   orderBookSnapshotCounts: Object.fromEntries(universe.symbols.map(s=>[s,snapshots.filter(x=>x.symbol===s).length])),
   feeSourceUrl: CONFIG.execution.feeSourceUrl,
