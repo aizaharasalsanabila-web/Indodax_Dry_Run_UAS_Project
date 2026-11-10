@@ -1,0 +1,27 @@
+name: Extract Indodax Project
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "indodax-project.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract project
+        run: |
+          unzip -o indodax-project.zip -d .
+          rm indodax-project.zip
+          rm -f .github/workflows/unpack-project.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add complete Indodax UAS project"
+          git push
