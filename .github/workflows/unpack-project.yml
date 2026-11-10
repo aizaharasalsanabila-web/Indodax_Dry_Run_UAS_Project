@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "indodax-project.zip"
-
+  workflow_dispatch:
 permissions:
   contents: write
 
