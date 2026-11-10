@@ -10,7 +10,7 @@ function readCsv(file) {
     return { time, open, high, low, close, volume };
   }).filter(x => [x.time,x.open,x.high,x.low,x.close,x.volume].every(Number.isFinite));
 }
-
+9
 const start = Math.floor(Date.parse(CONFIG.backtestStartUtc) / 1000);
 const end = start + CONFIG.universeSelection.firstWindowDays * 86400;
 const out = [];
@@ -22,8 +22,7 @@ for (const symbol of CONFIG.universeCandidates) {
     throw new Error(`${symbol}: insufficient bars in initial liquidity window (${bars.length})`);
   }
   const med = median(bars.map(b => b.close * b.volume));
-  out.push({ symbol, bars: bars.length, medianTurnoverPer4hIDR: med, pass: med >= CONFIG.universeSelection.minimumMedianTurnoverIDR });
-}
+  out.push({ symbol, bars: bars.length, medianTurnoverPer4hIDR: med, pass: med >= CONFIG.universeSelection.minimumMedianTurnoverPer4hIDR
 const selected = out.filter(x => x.pass);
 if (selected.length < 3 || selected.length > 10) throw new Error(`Universe must contain 3-10 pairs; passed=${selected.length}. See ${JSON.stringify(out)}`);
 const result = {
