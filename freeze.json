@@ -1,0 +1,47 @@
+{
+  "status": "LATE_FREEZE",
+  "actualFreezeAt": "2026-11-10T10:52:32.194Z",
+  "originallyScheduledFreezeAt": "2026-11-04T05:00:00.000Z",
+  "originallyScheduledForwardStartAt": "2026-11-04T05:00:00Z",
+  "lateByHours": 149.88,
+  "forwardTestStartPlannedAt": "2026-11-10T10:52:32.194Z",
+  "forwardTestActualStartAt": null,
+  "forwardTestActualStartRule": "Set only by first successful deployed tick; never backdate.",
+  "strategyConfigSha256": "5e06c764ff18fa00158366a995c8b0f1c148315354b59c91d8d2ec55896f161c",
+  "universeSha256": "ad71e7ed48687318b74f11fda459b9471e1dcfde6ffc5b515251651b08c8e8ad",
+  "signalEngineSha256": "e7d2829ee7ee7d1230f4052afaae1853d5e33ff74fc3c856c6a23643406d55c3",
+  "executionEngineSha256": "818db1e1f06e048baf520d7d8295e3fd70e69b27c62b811b9d0b37e63ebefd64",
+  "snapshotDataSha256": "16a296ba90ae63a2d0433f2e57089e9d11754ea85244de34f623e73cd291bb09",
+  "historyDataSha256": {
+    "BTCIDR": "0dcbdc0379816f746a15833df32b9563cdf551492e81bd001a8e61c9413b540f",
+    "ETHIDR": "933ed58ae6f8ccaec289b71a34ebba729d35c19286144a2bbae5021d010a60f4",
+    "XRPIDR": "66d30cfaa3c07d77db2dc7190177a784a062fea0131b79d6e5e4401cb9bbec88",
+    "LTCIDR": "00c9d1489a97940cee1aa2ac9b9169e7aeb7d0350fcbeac9e0af3394f034b895"
+  },
+  "universe": [
+    "BTCIDR",
+    "ETHIDR",
+    "XRPIDR",
+    "LTCIDR"
+  ],
+  "orderBookSnapshotCounts": {
+    "BTCIDR": 1,
+    "ETHIDR": 1,
+    "XRPIDR": 1,
+    "LTCIDR": 1
+  },
+  "feeSourceUrl": "https://help.indodax.com/hc/en-us/articles/4416646599705-Details-of-Transaction-Fees-on-INDODAX",
+  "feeEffectiveDate": "2026-10-01",
+  "feeSourceAccessedAt": "2026-11-10T10:52:32.194Z",
+  "officialTakerFeeAllInPct": {
+    "buy": 0.20555,
+    "sell": 0.41555
+  },
+  "apiTakerFeePctByPair": {
+    "BTCIDR": 0.2,
+    "ETHIDR": 0.2,
+    "XRPIDR": 0.2,
+    "LTCIDR": 0.2
+  },
+  "note": "This is a truthful late freeze. It does not claim a freeze on 4 November or create historical forward-test logs."
+}
